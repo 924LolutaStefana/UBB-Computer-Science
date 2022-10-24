@@ -1,0 +1,8 @@
+﻿  lista.cpp
+C:\Users\stefa\Desktop\LAB1\LAB1\lista.h(15,2): warning C4091: 'typedef ': ignored on left of 'Nod' when no variable is declared
+  main.cpp
+C:\Users\stefa\Desktop\LAB1\LAB1\lista.h(15,2): warning C4091: 'typedef ': ignored on left of 'Nod' when no variable is declared
+  Generating Code...
+C:\Users\stefa\Desktop\LAB1\LAB1\lista.cpp(68): warning C4715: 'test_inclusion_rec': not all control paths return a value
+C:\Users\stefa\Desktop\LAB1\LAB1\lista.cpp(60): warning C4715: 'search_rec': not all control paths return a value
+  LAB1.vcxproj -> C:\Users\stefa\Desktop\LAB1\x64\Debug\LAB1.exe

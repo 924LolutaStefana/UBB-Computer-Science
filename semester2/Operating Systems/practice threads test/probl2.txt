@@ -1,0 +1,50 @@
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <pthread.h>
+
+typedef struct{
+char*nume_fisier;
+}ceva;
+pthread_mutex_t m;
+void *f(void *a){
+char*nume= (*(ceva*)a).nume_fisier;
+FILE *f=fopen(nume,"r");
+char citit;
+while(fscanf(f,"%c",&citit)!=EOF)
+{
+
+    pthread_mutex_lock(&m);
+    printf(" caracter citit: %c \n", citit);
+
+    pthread_mutex_unlock(&m);
+
+
+}
+printf("ultimul caracter citit: %c \n", citit);
+
+free(a);
+fclose(f);
+return NULL;
+}
+int main( int argc, char **argv)
+{
+int i;
+pthread_t *t= malloc((argc-1)*sizeof(pthread_t));
+pthread_mutex_init(&m,NULL);
+for(i=0;i<argc-1;i++)
+{
+ ceva *s=malloc(sizeof(ceva));
+ s->nume_fisier=argv[i+1];
+ pthread_create(&t[i],NULL,f, (void *)s);
+}
+for(i=0;i<argc-1;i++)
+{
+pthread_join(t[i],NULL);
+}
+
+free(t);
+pthread_mutex_destroy(&m);
+return 0;
+}
+

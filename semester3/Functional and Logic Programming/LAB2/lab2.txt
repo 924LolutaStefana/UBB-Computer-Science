@@ -1,0 +1,36 @@
+%flow model (i,i,o)
+countOccurences([],_,0).
+%!-cut-always succeeds, 
+%but cannot be backtracked past.
+% It is used to prevent unwanted 
+% backtracking
+countOccurences([H|T],EL,CNT):-
+    H=:=EL,
+    !,
+    countOccurences(T,EL,CNT1),
+    CNT is CNT1+1.
+%A good way to interpret the meaning 
+%of _ as demonstrated in this code is 
+%"a variable that I do not care to refer to later
+countOccurences([_|T],EL,CNT):-
+    countOccurences(T,EL,CNT).
+
+%flow model (i,o) (i,i)
+intoSet([],[]).
+intoSet([H|T],[H|R]):-
+    countOccurences(T,H,CNT),
+    CNT<1,
+    !,
+    intoSet(T,R).
+
+intoSet([_|T],R):-
+    intoSet(T,R).
+
+%flow model (i,i,o)
+gcd(A,0,A).
+gcd(A,B,R):- A>B, gcd(B,A,R).
+gcd(A,B,R):- M is B mod A, gcd(A,M,R).
+
+%flow model (i,i,o)
+gcdList([],A,A).
+gcdList([H|T],AUX,R):- gcd(H,AUX,R2), gcdList(T,R2,R).

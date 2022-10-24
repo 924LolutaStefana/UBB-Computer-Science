@@ -1,0 +1,8 @@
+﻿  ExtendedTest.cpp
+C:\Users\stefa\Desktop\lab4\Matrix.h(14,2): warning C4091: 'typedef ': ignored on left of 'node' when no variable is declared
+C:\Users\stefa\Desktop\lab4\Matrix.h(19,2): warning C4091: 'typedef ': ignored on left of 'hashT' when no variable is declared
+  ShortTest.cpp
+C:\Users\stefa\Desktop\lab4\Matrix.h(14,2): warning C4091: 'typedef ': ignored on left of 'node' when no variable is declared
+C:\Users\stefa\Desktop\lab4\Matrix.h(19,2): warning C4091: 'typedef ': ignored on left of 'hashT' when no variable is declared
+  Generating Code...
+  lab4.vcxproj -> C:\Users\stefa\Desktop\lab4\x64\Debug\lab4.exe
