@@ -1,0 +1,23 @@
+
+%subpoint a
+myappend([],L,L).
+myappend([H|T],L,[H|R]):-
+    myappend(T,L,R).
+
+subst([], _, _, []).
+subst([H|T], Elem, RList, Res) :-
+    H =:= Elem,
+    subst(T, Elem, RList, Temp),
+    myappend(RList, Temp, Res).
+subst([H|T], Elem, RList, [H|T2]) :-
+    H =\= Elem,
+    subst(T, Elem, RList, T2).
+%subpoint b
+replace([], _, []).
+replace([H|T], RList, [Res1|Res2]) :-
+    is_list(H),
+    H = [F|_],
+    subst(H, F, RList, Res1),
+    replace(T, RList, Res2).
+replace([H|T], RList, [H|Res]) :-
+    replace(T, RList, Res).
