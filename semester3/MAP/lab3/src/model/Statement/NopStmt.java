@@ -1,2 +1,15 @@
-package model.Statement;public class NopStmt {
+package model.Statement;
+import Exception.MyException;
+import model.PrgState.PrgState;
+
+public class NopStmt implements IStmt{
+    @Override
+    public PrgState execute(PrgState state) throws MyException {
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        return "NopStmt";
+    }
 }

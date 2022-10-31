@@ -1,2 +1,7 @@
-package Exception;public class Exception {
+package Exception;
+
+public class MyException extends Throwable {
+    public MyException(String message) {
+        super(message);
+    }
 }

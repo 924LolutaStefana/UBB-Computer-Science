@@ -1,2 +1,7 @@
-package model.Value;public interface Value {
+package model.Value;
+
+import model.Type.Type;
+
+public interface Value {
+    Type getType();
 }

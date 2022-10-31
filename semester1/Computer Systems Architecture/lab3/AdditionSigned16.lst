@@ -1,0 +1,41 @@
+     1                                  bits 32 
+     2                                  global  start 
+     3                                  ;a - byte, b - word, c - double word, d - qword - Signed representation
+     4                                  ;(d-a)-(a-c)-d
+     5                                  extern  exit
+     6                                  
+     7                                  import  exit msvcrt.dll
+     8                                          
+     9                                  segment  data use32 class=data 
+    10 00000000 04                      	a db 4
+    11 00000001 2C01                        b dw 300
+    12 00000003 F4010000                    c dd 500
+    13 00000007 BC02000000000000            d dq 700
+    14                                      
+    15                                     
+    16                                  segment  code use32 class=code ; code segment
+    17                                  start: 
+    18 00000000 A0[00000000]                mov al,[a]
+    19 00000005 8B1D[07000000]              mov ebx,[d+0]
+    20 0000000B 8B0D[0B000000]              mov ecx,[d+4]
+    21 00000011 6698                        cbw
+    22 00000013 98                          cwde
+    23 00000014 29C3                        sub ebx,eax
+    24 00000016 83D900                      sbb ecx,0 ; in ebx:ecx vom avea d-a
+    25 00000019 A0[00000000]                mov al,[a]
+    26 0000001E 8B15[03000000]              mov edx,[c]
+    27 00000024 6698                        cbw
+    28 00000026 98                          cwde
+    29 00000027 29C2                        sub edx,eax ; in edx vom avea a-c
+    30 00000029 29C3                        sub ebx,eax
+    31 0000002B 83D900                      sbb ecx,0 ; in ebx:ecx vom avea (d-a)- (a-c)
+    32 0000002E A1[07000000]                mov eax,[d+0]
+    33 00000033 8B15[0B000000]              mov edx,[d+4]
+    34 00000039 29C3                        sub ebx,eax
+    35 0000003B 29D1                        sub ecx,edx;  in ebx:ecx vom avea (d-a)- (a-c) -d
+    36                                      
+    37                                      
+    38                                     
+    39                                      
+    40 0000003D 6A00                        push   dword 0 
+    41 0000003F FF15[00000000]          	call   [exit] 
