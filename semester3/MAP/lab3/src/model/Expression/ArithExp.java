@@ -8,9 +8,9 @@ import model.Value.Value;
 public class ArithExp implements Exp{
     private Exp e1;
     private Exp e2;
-    private int op;
+    private char op;
 
-    public ArithExp(Exp e1, Exp e2, int op) {
+    public ArithExp(char op,Exp e1, Exp e2) {
         this.e1 = e1;
         this.e2 = e2;
         this.op = op;
@@ -28,32 +28,26 @@ public class ArithExp implements Exp{
                 int n1, n2;
                 n1 = i1.getVal();
                 n2 = i2.getVal();
-                if (op == 1) return new IntValue(n1 + n2);
-                if (op == 2) return new IntValue(n1 - n2);
-                if (op == 3) return new IntValue(n1 * n2);
-                if (op == 4)
+                if (op == '+') return new IntValue(n1 + n2);
+                else if (op == '_') return new IntValue(n1 - n2);
+                else  if (op == '*') return new IntValue(n1 * n2);
+                else  if (op == '/')
                     if (n2 == 0) throw new MyException("division by zero");
                     else return new IntValue(n1 / n2);
-
             } else
                 throw new MyException("second operand is not integer");
         } else
             throw new MyException("first operand is not an integer");
-
-
-        return null;
+        return v1;
     }
-
     @Override
     public String toString() {
-        if (op==1)
-                return e1.toString()+"+"+e2.toString();
-        if (op==2)
-            return e1.toString()+"-"+e2.toString();
-        if (op==3)
-            return e1.toString()+"*"+e2.toString();
-        if (op==4)
-            return e1.toString()+"/"+e2.toString();
-        return null;
+        return e1.toString() + " " + op + " " + e2.toString();
     }
+    @Override
+    public Exp deepCopy() {
+        return new ArithExp(op, e1.deepCopy(), e2.deepCopy());
+    }
+
+
 }

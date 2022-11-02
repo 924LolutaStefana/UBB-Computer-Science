@@ -14,9 +14,9 @@ import java.util.Objects;
 public class LogicalExp implements Exp{
     Exp e1;
     Exp e2;
-    int op;
+    String op;
 
-    public LogicalExp(Exp e1, Exp e2, int op) {
+    public LogicalExp( String op,Exp e1, Exp e2) {
         this.e1 = e1;
         this.e2 = e2;
         this.op = op;
@@ -34,8 +34,8 @@ public class LogicalExp implements Exp{
                 boolean n1, n2;
                 n1 = i1.isVal();
                 n2 = i2.isVal();
-                if (op == 0) return new BoolValue(n1||n2);
-                if (op == 1) return new BoolValue(n1 &&n2);
+                if (Objects.equals(op, "or")) return new BoolValue(n1||n2);
+                if (Objects.equals(op, "and")) return new BoolValue(n1 &&n2);
 
 
             } else
@@ -49,12 +49,11 @@ public class LogicalExp implements Exp{
 
     @Override
     public String toString() {
-        if (op==0)
-            return e1.toString()+"or"+e2.toString();
-        if (op==1)
-            return e1.toString()+"and"+e2.toString();
-
-        return null;
+        return e1.toString() + " " + op + " " + e2.toString();
+    }
+    @Override
+    public Exp deepCopy() {
+        return new LogicalExp(op, e1.deepCopy(), e2.deepCopy());
     }
 }
 

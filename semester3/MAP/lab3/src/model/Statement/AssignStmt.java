@@ -35,5 +35,11 @@ public class AssignStmt implements IStmt{
     @Override
     public String toString() {
         return id.toString()+exp.toString();
+
+    }
+
+    @Override
+    public IStmt deepCopy() {
+        return new AssignStmt(id, exp.deepCopy());
     }
 }

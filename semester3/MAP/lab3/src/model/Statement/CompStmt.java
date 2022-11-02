@@ -27,4 +27,9 @@ public class CompStmt implements IStmt{
                  second.toString() ;
 
     }
+
+    @Override
+    public IStmt deepCopy() {
+        return new CompStmt(first.deepCopy(),second.deepCopy());
+    }
 }

@@ -14,6 +14,10 @@ public class IntType implements Type{
     public Value defaultValue() {
         return new IntValue(0);
     }
+    @Override
+    public Type deepCopy() {
+        return new IntType();
+    }
 
     @Override
     public String toString() {

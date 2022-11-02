@@ -7,24 +7,27 @@ def generate_parenthesis_backtracking( n) :
     close_brackets = 0
     backtrack(combinations, "", open_brackets, close_brackets, n)
     return combinations
-def generate_parenthesis_iterative( n) :
-    combinations=[]
-    open_brackets = 0
-    close_brackets = 0
-    iterative(combinations, "", open_brackets, close_brackets, n)
-    return combinations
-def iterative(combination, k, open_brackets, close_brackets, n):
-    while len(k) != n *2 :
 
-        while open_brackets < n:
-            (combination, k, open_brackets, close_brackets, n) = (
-                combination, k + "(", open_brackets + 1, close_brackets, n)
 
-            while close_brackets < open_brackets:
-                (combination, k, open_brackets, close_brackets, n) = (
-                    combination, k + ")", open_brackets, close_brackets + 1, n)
+def iterative(n):
+    combination = []
 
-    combination.append(k)
+    stack = [("", 0, 0)]
+    k = ""
+    while stack:
+        k,open_brackets, close_brackets=stack.pop()
+
+        if open_brackets < n:
+            stack.append((k + "(",open_brackets + 1,close_brackets))
+
+
+        if close_brackets < open_brackets:
+            stack.append((k + ")",open_brackets,close_brackets+1))
+        if len(k) == n * 2:
+            combination.append(k)
+
+
+    return combination
 
 
 def backtrack (combination, k, open_brackets, close_brackets, n):
@@ -47,7 +50,7 @@ def main():
         if n % 2 == 1:
             print("There are no solutions.")
         else:
-            print(generate_parenthesis_iterative(n//2))
+            print(iterative(n//2))
     else:
         if opt=="Backtracking":
             if  n%2==1:

@@ -5,10 +5,10 @@ import Exception.MyException;
 import java.util.Stack;
 
 public class MyStack <T> implements MyIStack<T> {
-    private Stack <T> stack;
+    Stack <T> stack;
 
-    public MyStack(Stack<T> stack) {
-        stack = new Stack <T>();
+    public MyStack() {
+        this.stack = new Stack <>();
     }
 
     @Override
@@ -24,7 +24,7 @@ public class MyStack <T> implements MyIStack<T> {
         return e;
     }
     public boolean isEmpty(){
-        return stack.empty();}
+        return stack.isEmpty();}
     //public List <T> getReverse (){
       //  List <T> l= Array.asList( (T[]) stack.toArray());
         //Collections.reverse(l);
