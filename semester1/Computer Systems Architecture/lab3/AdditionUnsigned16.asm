@@ -26,9 +26,9 @@ start:
     sub eax,ecx; in eax va fi c-a
     mov ecx,0
     mov cx,bx
-    sub eax,ecx
+    sub eax,ecx;in eax avem c-a-(b+a)
     mov ecx,0
     mov ecx,[c]
-    add eax,ecx
+    add eax,ecx;in eax avem c-a-(b+a)+c
     push   dword 0 
 	call   [exit] 

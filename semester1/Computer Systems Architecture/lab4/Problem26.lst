@@ -1,0 +1,42 @@
+     1                                  ;Given 2 dublucuvinte R and T. Compute the doubleword Q as follows:
+     2                                  ;the bits 0-6 of Q are the same as the bits 10-16 of T
+     3                                  ;the bits 7-24 of Q are the same as the bits 7-24 of (R XOR T).
+     4                                  ;the bits 25-31 of Q are the same as the bits 5-11 of R.
+     5                                  bits 32 
+     6                                  
+     7                                  global  start 
+     8                                  
+     9                                  extern  exit 
+    10                                  import  exit msvcrt.dll
+    11                                  segment  data use32 class=data 
+    12 00000000 57775777                    R dd 01110111010101110111011101010111b
+    13 00000004 BE9BBE9B                    T dd 10011011101111101001101110111110b
+    14 00000008 00000000                    Q dd 0
+    15                                  segment  code use32 class=code ; code segment
+    16                                  start: 
+    17 00000000 BB00000000                  mov ebx,0
+    18 00000005 A1[04000000]                mov eax,[T]
+    19 0000000A 2500FC0100                  and eax,00000000000000011111110000000000b; isolate the bits 10-16 of T
+    20 0000000F B10A                        mov cl,10
+    21 00000011 D3C8                        ror eax,cl;rotating 10 position to the right
+    22 00000013 09C3                        or ebx,eax;putting the bits in the result 
+    23 00000015 A1[00000000]                mov eax,[R]
+    24 0000001A 8B0D[04000000]              mov ecx,[T]
+    25 00000020 31C8                        xor eax,ecx; in eax will be the value of R XOR T
+    26 00000022 2580FFFF01                  and eax,00000001111111111111111110000000b;isolate the bits 7-24 of R XOR T
+    27 00000027 09C3                        or ebx,eax; putting the bits in the result
+    28 00000029 A1[00000000]                mov eax,[R]
+    29 0000002E 25E00F0000                  and eax,00000000000000000000111111100000b
+    30 00000033 B10D                        mov cl,13
+    31 00000035 D3C0                        rol eax,cl
+    32 00000037 09C3                        or ebx,eax
+    33 00000039 891D[08000000]              mov [Q],ebx
+    34                                      
+    35                                      
+    36                                      
+    37                                      
+    38                                      
+    39                                      
+    40                                  
+    41 0000003F 6A00                         push dword 0 
+    42 00000041 FF15[00000000]               call [exit] 

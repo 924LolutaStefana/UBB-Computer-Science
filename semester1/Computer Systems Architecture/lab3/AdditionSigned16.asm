@@ -33,9 +33,5 @@ start:
     mov edx,[d+4]
     sub ebx,eax
     sub ecx,edx;  in ebx:ecx vom avea (d-a)- (a-c) -d
-    
-    
-   
-    
     push   dword 0 
 	call   [exit] 

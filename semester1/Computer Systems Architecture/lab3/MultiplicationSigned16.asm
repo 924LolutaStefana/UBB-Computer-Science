@@ -55,19 +55,5 @@ start:
     pop ebx
     add edx,ebx
     add eax,ecx ;edx:eax=x/2+100*(a+b)-3/(d+c) + e*e
-    
-  
-    
-    
-    
-    
-    
-    
-    
-   
-    
-    
-   
-    
     push   dword 0 
 	call   [exit] 
