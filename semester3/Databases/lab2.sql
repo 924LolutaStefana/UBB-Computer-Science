@@ -15,13 +15,13 @@ CREATE TABLE Manager(
 	manager_id INT PRIMARY KEY IDENTITY(1,1),
 	manager_name VARCHAR(100),
 	year_of_birth INT,
-	departament_id INT FOREIGN KEY REFERENCES Departament(departament_id)
+	departament_id INT FOREIGN KEY REFERENCES Departament(departament_id)  ON DELETE CASCADE ON UPDATE CASCADE,
 	
 );
 
 CREATE TABLE Works_at(
-	employee_id INT FOREIGN KEY REFERENCES Employee(employee_id),
-	departament_id  INT FOREIGN KEY REFERENCES Departament(departament_id),
+	employee_id INT FOREIGN KEY REFERENCES Employee(employee_id) ON DELETE CASCADE ON UPDATE CASCADE,
+	departament_id  INT FOREIGN KEY REFERENCES Departament(departament_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	UNIQUE(employee_id,departament_id )
 	);
 
@@ -33,7 +33,7 @@ CREATE TABLE Brand(
 CREATE TABLE Product(
 	product_id INT PRIMARY KEY IDENTITY(1,1),
 	product_name VARCHAR(100),
-	brand_id INT FOREIGN KEY REFERENCES Brand(brand_id)
+	brand_id INT FOREIGN KEY REFERENCES Brand(brand_id)  ON DELETE CASCADE ON UPDATE CASCADE,
 	
 );
 CREATE TABLE Usage(
@@ -41,8 +41,8 @@ CREATE TABLE Usage(
 	usage_name VARCHAR(100)
 );
 CREATE TABLE Used_for(
-	product_id INT FOREIGN KEY REFERENCES Product(product_id),
-	usage_id  INT FOREIGN KEY REFERENCES Usage(usage_id),
+	product_id INT FOREIGN KEY REFERENCES Product(product_id) ON DELETE CASCADE ON UPDATE CASCADE,
+	usage_id  INT FOREIGN KEY REFERENCES Usage(usage_id)  ON DELETE CASCADE ON UPDATE CASCADE,
 	
 	UNIQUE(product_id,usage_id )
 	);
@@ -55,7 +55,7 @@ CREATE TABLE Location(
 CREATE TABLE Street(
 	street_id INT PRIMARY KEY IDENTITY(1,1),
 	street_name VARCHAR(100),
-	location_id INT FOREIGN KEY REFERENCES Location(location_id),
+	location_id INT FOREIGN KEY REFERENCES Location(location_id)  ON DELETE CASCADE ON UPDATE CASCADE,
 	number INT
 );
 --INSERT FOR AT LEAST 4 TABLES ; at least 1 statement must violate referential integrity constraints;
