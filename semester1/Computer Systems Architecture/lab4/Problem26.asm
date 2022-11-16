@@ -10,7 +10,7 @@ extern  exit
 import  exit msvcrt.dll
 segment  data use32 class=data 
     R dd 01110111010101110111011101010111b
-    T dd 10011011101111101001101110111110b
+    T dd 10011011101111101001101110111110b  
     Q dd 0
 segment  code use32 class=code ; code segment
 start: 

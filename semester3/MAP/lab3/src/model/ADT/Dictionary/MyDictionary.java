@@ -1,8 +1,9 @@
 package model.ADT.Dictionary;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-
+import Exception.MyException;
 public class MyDictionary <K,V> implements MyIDictionary<K,V>{
     private Map<K,V> map;
     public MyDictionary(){
@@ -26,6 +27,16 @@ public class MyDictionary <K,V> implements MyIDictionary<K,V>{
     public V lookup(K key) {
         return map.get(key);
     }
+
+    @Override
+    public void remove(K key) throws MyException {
+        if (!isVarDef(key))
+            throw new MyException(key + " is not defined.");
+        this.map.remove(key);
+    }
+
+
+
     public String toString(){
         return map.toString();}
 }

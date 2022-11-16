@@ -44,6 +44,6 @@ public class IfStmt implements IStmt{
 
     @Override
     public String toString() {
-        return "IF"+exp.toString()+"THEN"+thenS.toString()+"ELSE"+elseS.toString();
+        return " IF "+exp.toString()+" THEN "+thenS.toString()+" ELSE "+elseS.toString();
     }
 }

@@ -5,6 +5,9 @@ import model.PrgState.PrgState;
 import model.Statement.IStmt;
 import repository.IRepository;
 import Exception.MyException;
+
+import java.io.IOException;
+
 public class Controller {
     IRepository repository;
     boolean displayFlag = false;
@@ -24,12 +27,12 @@ public class Controller {
         IStmt  crtStmt = stk.pop();
         return crtStmt.execute(state);
     }
-    public void allStep() throws MyException {
+    public void allStep() throws MyException, IOException {
         PrgState prg = repository.getCrtPrg();
-
+        repository.PrgStateExec();
         while (!prg.getExeStack().isEmpty()){
             oneStep(prg);
-            display();
+            repository.PrgStateExec();
         }}
     private void display() {
         if (displayFlag) {

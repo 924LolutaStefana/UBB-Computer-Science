@@ -22,6 +22,14 @@ public class IntValue implements Value{
     }
 
     @Override
+    public boolean equals(Object anotherValue) {
+        if (!(anotherValue instanceof IntValue))
+            return false;
+        IntValue castValue = (IntValue) anotherValue;
+        return this.val == castValue.val;
+    }
+
+    @Override
     public Value deepCopy() {
         return new IntValue(val);}
 

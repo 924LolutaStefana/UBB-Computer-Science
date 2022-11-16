@@ -20,6 +20,13 @@ public class BoolValue implements Value{
     public Type getType() {
         return new BoolType();
     }
+    @Override
+    public boolean equals(Object anotherValue) {
+        if (!(anotherValue instanceof BoolValue))
+            return false;
+        BoolValue castValue = (BoolValue) anotherValue;
+        return this.val== castValue.val;
+    }
 
     @Override
     public Value deepCopy() {

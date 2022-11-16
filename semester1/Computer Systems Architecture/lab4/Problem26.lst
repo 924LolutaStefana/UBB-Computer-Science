@@ -10,7 +10,7 @@
     10                                  import  exit msvcrt.dll
     11                                  segment  data use32 class=data 
     12 00000000 57775777                    R dd 01110111010101110111011101010111b
-    13 00000004 BE9BBE9B                    T dd 10011011101111101001101110111110b
+    13 00000004 BE9BBE9B                    T dd 10011011101111101001101110111110b  
     14 00000008 00000000                    Q dd 0
     15                                  segment  code use32 class=code ; code segment
     16                                  start: 
@@ -31,12 +31,5 @@
     31 00000035 D3C0                        rol eax,cl
     32 00000037 09C3                        or ebx,eax
     33 00000039 891D[08000000]              mov [Q],ebx
-    34                                      
-    35                                      
-    36                                      
-    37                                      
-    38                                      
-    39                                      
-    40                                  
-    41 0000003F 6A00                         push dword 0 
-    42 00000041 FF15[00000000]               call [exit] 
+    34 0000003F 6A00                         push dword 0 
+    35 00000041 FF15[00000000]               call [exit] 

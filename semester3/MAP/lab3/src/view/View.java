@@ -1,6 +1,7 @@
 package view;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
@@ -26,7 +27,7 @@ import repository.IRepository;
 import repository.Repository;
 
 public class View {
-    public void start() throws MyException {
+    public void start() throws MyException, IOException {
         boolean done = false;
         while (!done) {
 
@@ -57,14 +58,14 @@ public class View {
         System.out.println("Choose an option> ");
     }
 
-    private void runProgram1() throws MyException {
+    private void runProgram1() throws MyException, IOException {
         IStmt ex1 = new CompStmt(new VarDeclStmt(" v", new IntType()),
                 new CompStmt(new AssignStmt(" v", new ValueExp(new IntValue(2))),
                         new PrintStmt(new VarExp(" v"))));
         runStatement(ex1);
     }
 
-    private void runProgram2() throws MyException {
+    private void runProgram2() throws MyException, IOException {
         IStmt ex2 = new CompStmt( new VarDeclStmt(" a",new IntType()),
                 new CompStmt(new VarDeclStmt(" b",new IntType()),
                         new CompStmt(new AssignStmt(" a", new ArithExp('+',new ValueExp(new IntValue(2)),
@@ -74,7 +75,7 @@ public class View {
         runStatement(ex2);
     }
 
-    private void runProgram3() throws MyException {
+    private void runProgram3() throws MyException, IOException {
         IStmt ex3 = new CompStmt(new VarDeclStmt(" a", new BoolType()),
                 new CompStmt(new VarDeclStmt(" v", new IntType()),
                         new CompStmt(new AssignStmt(" a", new ValueExp(new BoolValue(true))),
@@ -85,14 +86,15 @@ public class View {
         runStatement(ex3);
     }
 
-    private void runStatement(IStmt statement) throws MyException {
+    private void runStatement(IStmt statement) throws MyException, IOException {
         MyIStack<IStmt> executionStack = new MyStack<>();
         MyIDictionary<String, Value> symbolTable = new MyDictionary<>();
         MyIList<Value> output = new MyList<>();
+        MyIDictionary<String, BufferedReader> fileTable = new MyDictionary<>();
 
-        PrgState state = new PrgState(executionStack, symbolTable, output,  statement);
+        PrgState state = new PrgState(executionStack, symbolTable, output,  statement,fileTable);
 
-        IRepository repository = new Repository(state);
+        IRepository repository = new Repository(state,"");
         Controller controller = new Controller(repository);
 
         System.out.println("Do you want to display the steps?Yes or No?");

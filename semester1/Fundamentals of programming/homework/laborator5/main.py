@@ -7,6 +7,14 @@ Determine the longest common subsequence of two given sequences.
 """
 
 def naive(X, Y, m, n):
+    """
+
+    :param X:
+    :param Y:
+    :param m:
+    :param n:
+    :return:
+    """
     if m == 0 or n == 0:
         return 0
     elif X[m - 1] == Y[n - 1]:

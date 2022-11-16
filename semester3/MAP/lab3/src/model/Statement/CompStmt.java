@@ -23,8 +23,7 @@ public class CompStmt implements IStmt{
 
     @Override
     public String toString() {
-        return  first.toString() +
-                 second.toString() ;
+        return String.format("(%s|%s)", first.toString(), second.toString());
 
     }
 
