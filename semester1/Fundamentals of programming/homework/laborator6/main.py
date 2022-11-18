@@ -108,7 +108,7 @@ def print_list(complex_numbers):
 def largest_subarray(a):
     """
     A function that computes the length of the  longest subarray of numbers having increasing modulus
-    :param a:
+    :param a: a list
     :return:
     """
     start_position = 0
@@ -130,17 +130,17 @@ def largest_subarray(a):
 def compute_modulus(real,imag):
     """
     computes the modulus of a complex number
-    :param real:
-    :param imag:
-    :return:
+    :param real:integer
+    :param imag:integer
+    :return: modulus of the complex nr
     """
 
     return math.sqrt(real ** 2 + imag ** 2)
 def compute_list_of_moduluses(complex_numbers):
     """
     computes a list of moduluses of our complex number list
-    :param complex_numbers:
-    :return:
+    :param complex_numbers:list
+    :return: a list consisting of moduluses
     """
     complex_numbers_modulus=[]
     for i in range (len(complex_numbers)):
@@ -149,27 +149,26 @@ def compute_list_of_moduluses(complex_numbers):
     return complex_numbers_modulus
 
 
-def lis(complex_numbers):
+def lis(numbers_list):
     """
     computes the length of the longest increasing subsequence when considering each number's real part
-    :param complex_numbers:
+    :param numbers_list:list
     :return:
     """
-    n = len(complex_numbers)
+    result = [[] for position in range(len(numbers_list))]
+    result[0].append(numbers_list[0])
+    for i in range(1, len(numbers_list)):
+        for j in range(i):
+            if get_real_part_of_complex_number(numbers_list[i]) > get_real_part_of_complex_number(numbers_list[j]) and (
+                    len(result[i]) < len(result[j]) + 1):
+                result[i] = result[j].copy()
+        result[i].append(numbers_list[i])
+    longest_subsequence = result[0]
+    for i in result:
+        if len(i) > len(longest_subsequence):
+            longest_subsequence = i
+    return longest_subsequence
 
-    lis = [1] * n
-
-    for i in range(1, n):
-        for j in range(0, i):
-            if get_real_part_of_complex_number(complex_numbers[i]) > get_real_part_of_complex_number(complex_numbers[j]) and lis[i] < lis[j] + 1:
-                lis[i] = lis[j] + 1
-
-    maximum = 0
-
-    for i in range(n):
-        maximum = max(maximum, lis[i])
-
-    return maximum
 def start():
     complex_numbers = generate_list_of_complex_numbers()
     #complex_numbers=generate_dictionary_of_complex_numbers()
@@ -196,12 +195,17 @@ def start():
             startpos=largest_subarray(modulus)[0]
             maxcont=largest_subarray(modulus)[1]
             for number in range(startpos, (startpos + maxcont)):
-                print(toStr(complex_numbers[number]), end=" ")
-            print("\n longest subarray with increasing modulo having the length " + str(maxcont) + "\n")
+                print(toStr(complex_numbers[number])+" ")
+            print("\n Length:  " + str(maxcont) + "\n")
 
         elif choice == 4:
 
-            print("Length of the longest increasing subsequence is ",lis(complex_numbers))
+            longest_subsequence=lis(complex_numbers)
+            for complex_number in range(len(longest_subsequence)):
+                print(toStr(longest_subsequence[complex_number])+" ")
+            print(
+                "\n Length: " + str(
+                    len(longest_subsequence)) + "\n")
         elif choice == 0:
             break
         else:
