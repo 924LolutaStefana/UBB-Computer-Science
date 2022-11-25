@@ -1,0 +1,38 @@
+     1                                  ;17.A string of doublewords is given. Order in decreasing order the string of the low words (least significant) from these doublewords. The high words (most significant) remain unchanged.
+     2                                  ;Example:
+     3                                  ;being given sir DD 12345678h, 1256ABCDh, 12AB4344h
+     4                                  ;the result will be 1234ABCDh, 12565678h, 12AB4344h.
+     5                                  
+     6                                  bits 32
+     7                                  global start
+     8                                  extern exit
+     9                                  import exit msvcrt.dll
+    10                                  segment data use32 class=data
+    11 00000000 78563412CDAB561244-     	sir  dd  12345678h,1256ABCDh, 12AB4344h
+    11 00000009 43AB12             
+    12                                  	len equ ($-sir)/4;the length of the string (in doublewords)
+    13 0000000C <res 00000003>          	d resb len
+    14                                  
+    15                                  segment code use32 class=code
+    16                                      start:
+    17 00000000 BE[00000000]            	mov esi, sir;in eds:esi we will store the FAR address of the string "sir"    
+    18 00000005 BF[0C000000]                mov edi,d
+    19 0000000A FC                          cld
+    20 0000000B B902000000                  mov ecx, len-1;we will parse the elements of the string in a loop with len iterations.
+    21                                      repeta:
+    22 00000010 AD                              lodsd;we take the first doubleword from the string
+    23 00000011 89C3                            mov ebx,eax
+    24 00000013 AD                              lodsd;we take the second doubleword from the string
+    25 00000014 6639D8                          cmp ax, bx;we compare the low words of the doublewords
+    26 00000017 7C03                            jl swap;if the first is less than the second, we swap them
+    27 00000019 AB                              stosd;otherwise, we put the first doubleword in the string "d"
+    28 0000001A EB05                            jmp next;and we go to the next iteration
+    29                                      swap:
+    30 0000001C 6693                            xchg bx,ax
+    31 0000001E 89D8                            mov eax,ebx
+    32 00000020 AB                              stosd;we put the second doubleword in the string "d"
+    33                                      next:
+    34 00000021 E2ED                            loop repeta;we go to the next iteration
+    35 00000023 B800000000                  mov eax, 0
+    36 00000028 6A00                        push dword 0; push the parameter for exit onto the stack
+    37 0000002A FF15[00000000]              call [exit]; call exit

@@ -1,7 +1,7 @@
 from functions import *
 def test_all_ui():
     test_all()
-    print("All tests passed! :)")
+    print('\033[92m'"All tests passed! :)"'\033[0m' )
 
 def add_ui(expenses,parameters,history):
 

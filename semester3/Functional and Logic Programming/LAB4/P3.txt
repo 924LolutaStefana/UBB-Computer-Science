@@ -1,0 +1,62 @@
+% 5. Two integers, n and m are given. Write a predicate to determine all possible sequences of numbers
+%    from 1 to n, such that between any two numbers from consecutive positions, the absolute difference to be >= m.
+
+% absolute_difference(a,b) = 
+% = a - b, if a >= b
+% = b - a, otherwise
+
+% flow (i,i,o)
+
+absolute_difference(A,B,R):-
+    A >= B,
+    R is A - B.
+absolute_difference(A,B,R):-
+    A < B,
+    R is B - A.
+
+% check_absolute_difference(l1l2...ln, m) = 
+% = true, if n = 2 and absDiff(l1,l2) >= m
+% = check_absolute_difference(l2...ln, m), if absolute_difference(l1,l2) >= m
+% = false, otherwise
+
+% flow (i,i,o)
+
+check_absolute_difference([H1,H2],M):-
+    absolute_difference(H1,H2,R),
+    R >= M.
+check_absolute_difference([H1,H2|T],M):-
+    absolute_difference(H1,H2,R),
+    R >= M,
+    check_absolute_difference([H2|T],M).
+
+% sequence(i, n) = 
+% = [], if i = n + 1
+% = {i} U sequence(i + 1, n), if i <= n
+% = sequence(i + 1, n), if i <= n
+
+
+% sequence(I:number, N:number, R:list)
+% (i,i,o)
+
+sequence(I,N,[]):-
+    I =:= N + 1.
+sequence(I,N,[I|R]):-
+    I =< N,
+    I1 is I + 1,
+    sequence(I1,N,R).
+sequence(I,N,R):-
+    I =< N,
+    I1 is I + 1,
+    sequence(I1, N, R).
+
+% one_solution(n, m, r1r2...rk) = 
+% sequence(1, n, r1r2...rk), if check_absolute_difference(r1r2...rk, m) = true
+
+% flow (i,i,o)
+
+one_solution(N,M,R):-
+    sequence(1,N,R),
+    check_absolute_difference(R,M).
+
+allSols(N,M,R):-
+    findall(RPartial,one_solution(N,M,RPartial),R).
