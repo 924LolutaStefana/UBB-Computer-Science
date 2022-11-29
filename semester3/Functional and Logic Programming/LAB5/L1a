@@ -1,0 +1,101 @@
+; 6.
+; a) Write a function to test whether a list is linear.
+; checkLinearList(l1l2...ln) = 
+; = true, if n = 0
+; = false, if l1 is a list
+; = checkLinearList(l2...ln), otherwise
+
+;I used listp to check if the first elem of the list (using car) is a list
+; cdr is for taking all the elements of the list except the first one
+
+(defun checkLinearList (l)
+    (cond
+        ((null l) T)
+        ((listp (car l)) nil)
+        (T (checkLinearList (cdr l)))
+    )
+)
+; b) Write a function to replace the first occurence of an element E in a given list with an other element O.
+
+; replaceFirstOccurence(l1l2...ln, e, o) = 
+; = nil , if n = 0
+; = {o} U (l2...ln), if e = l1
+; = {l1} U replaceFirstOccurence(l2...ln), otherwise
+
+(defun replaceFirstOccurence (l e o)
+    (cond
+        ((null l) nil)
+        ((= (car l) e) (cons o (cdr l)))
+        (T (cons (car l) (replaceFirstOccurence (cdr l) e o)))
+    )
+)
+; c) Write a function to replace each sublist of a list with its last element.
+;  A sublist is an element from the first level, which is a list.
+;  Example: (a (b c) (d (e (f)))) ==> (a c (e (f))) ==> (a c (f)) ==> (a c f)
+;  (a (b c) (d ((e) f))) ==> (a c ((e) f)) ==> (a c f)
+
+; myAppend(l1l2...ln, p1p2...pm) = 
+; = p1p2...pm, if n = 0
+; = {l1} U myAppend(l2...ln, p1p2...pm), otherwise
+
+(defun myAppend(l p)
+  (cond n 
+    ((null l) p)
+    (t (cons (car l) (myAppend (cdr l) p)))
+  )
+)
+
+; myReverse(l1l2...ln) = 
+; = nil , if n = 0
+; = myAppend(myReverse(l2...ln), list(myReverse(l1))) , if l1 is a list
+; = myAppend(myReverse(l2...ln), list(l1)) , otherwise
+
+(defun myReverse (l)
+    (if (null l)
+        nil
+        (myAppend (myReverse (cdr l)) (list (car l)))
+    )        
+)
+; lastElement(l1l2...ln) = 
+; = lastElement(l1) U myReverse(l1), if l is a list
+; = l, otherwise
+
+
+(defun lastElement (l)
+	(if (listp l) 
+        (lastElement (car (myReverse l)))
+        l
+    )
+)
+; myReplace(l1l2...ln) = 
+; = nil , if n = 0
+; = lastElement(l1) U myReplace(l2...ln), if l1 is a list
+; = {l1} U myReplace(l2...ln) , otherwise
+
+(defun myReplace (l)
+	(cond
+		((null l) nil)
+		((listp (car l)) (cons (lastElement (car l)) (myReplace (cdr l))))
+		(T (cons (car l) (myReplace (cdr l))))
+	)
+)
+
+; d) Write a function to merge two sorted lists without keeping double values.
+
+; myMerge(l1l2...ln, p1p2...pm) = 
+; = l1l2...ln, if m = 0
+; = p1p2...pm, if n = 0
+; = {l1} U myMerge(l2...ln, p1p2...pm) , if l1 < p1
+; = {p1} U myMerge(l1l2...ln, p2...pm) , if l1 > p1
+; = {l1} U myMerge(l2...ln, p2...pm) , if l1 = p1
+
+
+(defun myMerge (l p)
+  (cond
+    ((null l) p)
+    ((null p) l)
+    ((< (car l) (car p)) (cons (car l) (myMerge (cdr l) p)))
+    ((> (car l) (car p)) (cons (car p) (myMerge l (cdr p))))
+    ((= (car l) (car p)) (cons (car l) (myMerge (cdr l) (cdr p))))
+  )
+)

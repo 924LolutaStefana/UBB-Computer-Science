@@ -20,17 +20,17 @@
     19 0000000A FC                          cld
     20 0000000B B902000000                  mov ecx, len-1;we will parse the elements of the string in a loop with len iterations.
     21                                      repeta:
-    22 00000010 AD                              lodsd;we take the first doubleword from the string
-    23 00000011 89C3                            mov ebx,eax
-    24 00000013 AD                              lodsd;we take the second doubleword from the string
+    22 00000010 AD                              lodsd;we take the current doubleword from the string
+    23 00000011 89C3                            mov ebx,eax; we store the current double word in ebx
+    24 00000013 AD                              lodsd;we take the next doubleword from the string
     25 00000014 6639D8                          cmp ax, bx;we compare the low words of the doublewords
     26 00000017 7C03                            jl swap;if the first is less than the second, we swap them
-    27 00000019 AB                              stosd;otherwise, we put the first doubleword in the string "d"
+    27 00000019 AB                              stosd;otherwise, we put the current doubleword in the string "d",unchanged
     28 0000001A EB05                            jmp next;and we go to the next iteration
     29                                      swap:
     30 0000001C 6693                            xchg bx,ax
     31 0000001E 89D8                            mov eax,ebx
-    32 00000020 AB                              stosd;we put the second doubleword in the string "d"
+    32 00000020 AB                              stosd;we put the current doubleword  in the string "d", but with the lower word equal to the next doubleword
     33                                      next:
     34 00000021 E2ED                            loop repeta;we go to the next iteration
     35 00000023 B800000000                  mov eax, 0
