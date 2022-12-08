@@ -1,6 +1,0 @@
-exeStack=[(v int|(v=2|v))], symTable={}, out=[], fileTable={}
-exeStack=[(v=2|v), v int], symTable={}, out=[], fileTable={}
-exeStack=[(v=2|v)], symTable={v=0}, out=[], fileTable={}
-exeStack=[v, v=2], symTable={v=0}, out=[], fileTable={}
-exeStack=[v], symTable={v=2}, out=[], fileTable={}
-exeStack=[], symTable={v=2}, out=[2], fileTable={}

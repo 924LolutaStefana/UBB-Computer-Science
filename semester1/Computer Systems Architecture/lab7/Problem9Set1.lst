@@ -1,0 +1,64 @@
+     1                                  
+     2                                  bits 32
+     3                                  global start        
+     4                                  ;Read two numbers a and b (base 10) from the keyboard and calculate: (a+b)/(a-b). The quotient will be stored in a variable called ;"result" (defined in the data segment). The values are considered in signed represe
+     5                                  ; declaring extern functions used in the program
+     6                                  extern exit, printf, scanf            
+     7                                  import exit msvcrt.dll     
+     8                                  import printf msvcrt.dll     ; indicating to the assembler that the printf fct can be found in the msvcrt.dll library
+     9                                  import scanf msvcrt.dll      ; similar for scanf
+    10                                                            
+    11                                  segment  data use32 class=data
+    12 00000000 <res 00000001>          	a resb 1       ; this is the variable where we store the number read from keyboard
+    13 00000001 <res 00000001>              b resb 1
+    14                                  	
+    15 00000002 256400                  	format1  db "%d", 0  ; %d <=> a decimal number (base 10)
+    16 00000005 256400                      format5 db "%d", 0
+    17 00000008 54686520726573756C-         format3 db "The result is %d ", 0 
+    17 00000011 742069732025642000 
+    18 0000001A 613D2000                    format2 db "a= ", 0 
+    19 0000001E 623D2000                    format4 db "b= ", 0 
+    20                                      
+    21                                      
+    22 00000022 00                          result db 0
+    23                                  segment  code use32 class=code
+    24                                      start:
+    25 00000000 68[1A000000]                    push dword format2
+    26 00000005 FF15[00000000]                  call [printf]
+    27 0000000B 83C404                          add esp, 4;printing "a= "
+    28                                          
+    29 0000000E 68[00000000]                    push dword a
+    30 00000013 68[02000000]                    push dword format1
+    31 00000018 FF15[00000000]                  call [scanf]
+    32 0000001E 83C408                          add esp, 4*2; reading a
+    33                                           
+    34 00000021 68[1E000000]                    push dword format4
+    35 00000026 FF15[00000000]                  call [printf]
+    36 0000002C 83C404                          add esp, 4;printing "b= "
+    37                                          
+    38                                         
+    39                                          
+    40 0000002F 68[01000000]                    push dword b
+    41 00000034 68[05000000]                    push dword format5
+    42 00000039 FF15[00000000]                  call [scanf]
+    43 0000003F 83C408                          add esp, 4*2; reading b
+    44                                          
+    45 00000042 A0[00000000]                    mov al,[a]
+    46 00000047 0205[01000000]                  add al,byte[b]
+    47                                         
+    48 0000004D 8A1D[00000000]                  mov bl,[a]
+    49 00000053 2A1D[01000000]                  sub bl,[b]
+    50 00000059 6698                            cbw
+    51                                         
+    52 0000005B F6FB                            idiv bl
+    53 0000005D A2[22000000]                    mov [result],al
+    54 00000062 6698                            cbw
+    55                                          
+    56 00000064 6699                            cwd
+    57 00000066 50                              push eax
+    58 00000067 68[08000000]                    push dword format3
+    59 0000006C FF15[00000000]                  call [printf]
+    60 00000072 83C408                          add esp, 4*2
+    61                                          ; exit(0)
+    62 00000075 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    63 00000077 FF15[00000000]                  call    [exit]       ; call exit to terminate the program

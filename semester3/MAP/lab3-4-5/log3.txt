@@ -1,0 +1,132 @@
+exeStack=[(a int|(b int|(a=5|(b=7| IF a > b THEN a ELSE b))))], symTable={}, out=[], fileTable={}
+exeStack=[(b int|(a=5|(b=7| IF a > b THEN a ELSE b))), a int], symTable={}, out=[], fileTable={}
+exeStack=[(b int|(a=5|(b=7| IF a > b THEN a ELSE b)))], symTable={a=0}, out=[], fileTable={}
+exeStack=[(a=5|(b=7| IF a > b THEN a ELSE b)), b int], symTable={a=0}, out=[], fileTable={}
+exeStack=[(a=5|(b=7| IF a > b THEN a ELSE b))], symTable={a=0, b=0}, out=[], fileTable={}
+exeStack=[(b=7| IF a > b THEN a ELSE b), a=5], symTable={a=0, b=0}, out=[], fileTable={}
+exeStack=[(b=7| IF a > b THEN a ELSE b)], symTable={a=5, b=0}, out=[], fileTable={}
+exeStack=[ IF a > b THEN a ELSE b, b=7], symTable={a=5, b=0}, out=[], fileTable={}
+exeStack=[ IF a > b THEN a ELSE b], symTable={a=5, b=7}, out=[], fileTable={}
+exeStack=[b], symTable={a=5, b=7}, out=[], fileTable={}
+exeStack=[], symTable={a=5, b=7}, out=[7], fileTable={}
+Execution stack: 
+[(a int|(b int|(a=5|(b=7| IF a > b THEN a ELSE b))))]
+Symbol table: 
+{}
+Output list: 
+[]
+File table:
+{}
+Heap memory:
+{}
+
+Execution stack: 
+[a int, (b int|(a=5|(b=7| IF a > b THEN a ELSE b)))]
+Symbol table: 
+{}
+Output list: 
+[]
+File table:
+{}
+Heap memory:
+{}
+
+Execution stack: 
+[(b int|(a=5|(b=7| IF a > b THEN a ELSE b)))]
+Symbol table: 
+{a=0}
+Output list: 
+[]
+File table:
+{}
+Heap memory:
+{}
+
+Execution stack: 
+[b int, (a=5|(b=7| IF a > b THEN a ELSE b))]
+Symbol table: 
+{a=0}
+Output list: 
+[]
+File table:
+{}
+Heap memory:
+{}
+
+Execution stack: 
+[(a=5|(b=7| IF a > b THEN a ELSE b))]
+Symbol table: 
+{a=0, b=0}
+Output list: 
+[]
+File table:
+{}
+Heap memory:
+{}
+
+Execution stack: 
+[a=5, (b=7| IF a > b THEN a ELSE b)]
+Symbol table: 
+{a=0, b=0}
+Output list: 
+[]
+File table:
+{}
+Heap memory:
+{}
+
+Execution stack: 
+[(b=7| IF a > b THEN a ELSE b)]
+Symbol table: 
+{a=5, b=0}
+Output list: 
+[]
+File table:
+{}
+Heap memory:
+{}
+
+Execution stack: 
+[b=7,  IF a > b THEN a ELSE b]
+Symbol table: 
+{a=5, b=0}
+Output list: 
+[]
+File table:
+{}
+Heap memory:
+{}
+
+Execution stack: 
+[ IF a > b THEN a ELSE b]
+Symbol table: 
+{a=5, b=7}
+Output list: 
+[]
+File table:
+{}
+Heap memory:
+{}
+
+Execution stack: 
+[b]
+Symbol table: 
+{a=5, b=7}
+Output list: 
+[]
+File table:
+{}
+Heap memory:
+{}
+
+Execution stack: 
+[]
+Symbol table: 
+{a=5, b=7}
+Output list: 
+[7]
+File table:
+{}
+Heap memory:
+{}
+

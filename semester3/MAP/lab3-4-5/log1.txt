@@ -1,0 +1,72 @@
+exeStack=[(v int|(v=2|v))], symTable={}, out=[], fileTable={}
+exeStack=[(v=2|v), v int], symTable={}, out=[], fileTable={}
+exeStack=[(v=2|v)], symTable={v=0}, out=[], fileTable={}
+exeStack=[v, v=2], symTable={v=0}, out=[], fileTable={}
+exeStack=[v], symTable={v=2}, out=[], fileTable={}
+exeStack=[], symTable={v=2}, out=[2], fileTable={}
+Execution stack: 
+[(v int|(v=2|v))]
+Symbol table: 
+{}
+Output list: 
+[]
+File table:
+{}
+Heap memory:
+{}
+
+Execution stack: 
+[v int, (v=2|v)]
+Symbol table: 
+{}
+Output list: 
+[]
+File table:
+{}
+Heap memory:
+{}
+
+Execution stack: 
+[(v=2|v)]
+Symbol table: 
+{v=0}
+Output list: 
+[]
+File table:
+{}
+Heap memory:
+{}
+
+Execution stack: 
+[v=2, v]
+Symbol table: 
+{v=0}
+Output list: 
+[]
+File table:
+{}
+Heap memory:
+{}
+
+Execution stack: 
+[v]
+Symbol table: 
+{v=2}
+Output list: 
+[]
+File table:
+{}
+Heap memory:
+{}
+
+Execution stack: 
+[]
+Symbol table: 
+{v=2}
+Output list: 
+[2]
+File table:
+{}
+Heap memory:
+{}
+
