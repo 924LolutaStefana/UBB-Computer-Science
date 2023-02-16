@@ -37,7 +37,7 @@
     28                                  segment code use32 class=code
     29                                      start:
     30                                      
-    31                                      ;fopen(file_name, access_mode)
+    31                                      
     32 00000000 68[0C000000]                push dword access_mode
     33 00000005 68[01000000]                push dword file_name
     34 0000000A FF15[00000000]              call [fopen]
@@ -50,7 +50,7 @@
     41                                  
     42                                      
     43                                      keep_reading:
-    44                                          ;fread(spec_char, 1, len, file_descriptor)
+    44                                         
     45 00000021 FF35[00000000]                  push dword [file_descriptor]
     46 00000027 6A01                            push dword len
     47 00000029 6A01                            push dword 1
@@ -84,7 +84,7 @@
     75 00000077 EBA8                            jmp keep_reading
     76                                      
     77                                      stop_reading:
-    78                                      ;fclose(file_descriptor)
+    78                                     
     79 00000079 FF35[00000000]              push dword [file_descriptor]
     80 0000007F FF15[00000000]              call [fclose]
     81 00000085 83C404                      add ESP, 4*1
@@ -107,7 +107,7 @@
     98 000000AE 46                             inc ESI
     99 000000AF E2E1                        loop parse_the_frequency
    100                                      
-   101                                      ;printf(message, letter_with_max_freq, freq_letter)
+   101                                     
    102 000000B1 FF35[C2040000]              push dword [freq_character]
    103 000000B7 FF35[C6040000]              push dword [character_with_max_freq]
    104 000000BD 68[CE040000]                push dword message

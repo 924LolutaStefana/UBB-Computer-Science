@@ -28,7 +28,7 @@ segment data use32 class=data
 segment code use32 class=code
     start:
     
-    ;fopen(file_name, access_mode)
+    
     push dword access_mode
     push dword file_name
     call [fopen]
@@ -41,7 +41,7 @@ segment code use32 class=code
 
     
     keep_reading:
-        ;fread(spec_char, 1, len, file_descriptor)
+       
         push dword [file_descriptor]
         push dword len
         push dword 1
@@ -75,7 +75,7 @@ segment code use32 class=code
         jmp keep_reading
     
     stop_reading:
-    ;fclose(file_descriptor)
+   
     push dword [file_descriptor]
     call [fclose]
     add ESP, 4*1
@@ -98,7 +98,7 @@ segment code use32 class=code
        inc ESI
     loop parse_the_frequency
     
-    ;printf(message, letter_with_max_freq, freq_letter)
+   
     push dword [freq_character]
     push dword [character_with_max_freq]
     push dword message
