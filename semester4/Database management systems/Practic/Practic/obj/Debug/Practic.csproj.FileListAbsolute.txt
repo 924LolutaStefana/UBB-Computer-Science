@@ -1,0 +1,11 @@
+C:\Users\stefa\Desktop\Practic\Practic\bin\Debug\Practic.exe.config
+C:\Users\stefa\Desktop\Practic\Practic\bin\Debug\Practic.exe
+C:\Users\stefa\Desktop\Practic\Practic\bin\Debug\Practic.pdb
+C:\Users\stefa\Desktop\Practic\Practic\obj\Debug\Practic.csproj.AssemblyReference.cache
+C:\Users\stefa\Desktop\Practic\Practic\obj\Debug\Practic.csproj.SuggestedBindingRedirects.cache
+C:\Users\stefa\Desktop\Practic\Practic\obj\Debug\Practic.Properties.Resources.resources
+C:\Users\stefa\Desktop\Practic\Practic\obj\Debug\Practic.csproj.GenerateResource.cache
+C:\Users\stefa\Desktop\Practic\Practic\obj\Debug\Practic.csproj.CoreCompileInputs.cache
+C:\Users\stefa\Desktop\Practic\Practic\obj\Debug\Practic.exe
+C:\Users\stefa\Desktop\Practic\Practic\obj\Debug\Practic.pdb
+C:\Users\stefa\Desktop\Practic\Practic\obj\Debug\Practic.Form1.resources

@@ -1,3 +1,6 @@
+Drop table Manager;
+Drop table Departament;
+Drop table Works_at;
 CREATE TABLE Employee(
 	employee_id INT PRIMARY KEY IDENTITY(1,1),
 	employee_name VARCHAR(100),
@@ -6,14 +9,14 @@ CREATE TABLE Employee(
 	
 );
 CREATE TABLE Departament(
-	departament_id INT PRIMARY KEY IDENTITY(1,1),
-	departament_name VARCHAR(100),
+	departament_id integer not null primary key,
+	departament_name VARCHAR(100) not null,
 	
 	
 );
 CREATE TABLE Manager(
-	manager_id INT PRIMARY KEY IDENTITY(1,1),
-	manager_name VARCHAR(100),
+	manager_id integer not null primary key,
+	manager_name VARCHAR(100) not null,
 	year_of_birth INT,
 	departament_id INT FOREIGN KEY REFERENCES Departament(departament_id)  ON DELETE CASCADE ON UPDATE CASCADE,
 	
@@ -73,16 +76,16 @@ INSERT INTO Employee(employee_name,month_of_birth,salary) VALUES ('Amelia',3,190
 INSERT INTO Employee(employee_name,month_of_birth,salary) VALUES ('Dragos',12,6000);
 
 SELECT * FROM Employee;
-INSERT INTO Manager(manager_name,year_of_birth,departament_id) VALUES ('Emilia',2000,1);
-INSERT INTO Manager(manager_name,year_of_birth,departament_id) VALUES ('Maria',1980,2);
-INSERT INTO Manager(manager_name,year_of_birth,departament_id) VALUES ('Vasile',1964,3);
-INSERT INTO Manager(manager_name,year_of_birth) VALUES ('Aurel',1970);
-INSERT INTO Manager(manager_name,year_of_birth,departament_id) VALUES ('ANA',1980,2);
+INSERT INTO Manager(manager_id,manager_name,year_of_birth,departament_id) VALUES (1,'Emilia',2000,1);
+INSERT INTO Manager(manager_id,manager_name,year_of_birth,departament_id) VALUES (2,'Maria',1980,2);
+INSERT INTO Manager(manager_id,manager_name,year_of_birth,departament_id) VALUES (3,'Vasile',1964,3);
+INSERT INTO Manager(manager_id,manager_name,year_of_birth,departament_id) VALUES (4,'Aurel',1970,1);
+INSERT INTO Manager(manager_id,manager_name,year_of_birth,departament_id) VALUES (5,'ANA',1980,2);
 SELECT * FROM Manager;
-INSERT INTO Departament(departament_name) VALUES ('Cleaning');
-INSERT INTO Departament(departament_name) VALUES ('Makeup');
-INSERT INTO Departament(departament_name) VALUES ('Security');
-INSERT INTO Departament(departament_name) VALUES ('Parfumes');
+INSERT INTO Departament(departament_id,departament_name) VALUES (1,'Cleaning');
+INSERT INTO Departament(departament_id,departament_name) VALUES (2,'Makeup');
+INSERT INTO Departament(departament_id,departament_name) VALUES (3,'Security');
+INSERT INTO Departament(departament_id,departament_name) VALUES (4,'Parfumes');
 SELECT * FROM Departament;
 INSERT INTO Works_at(employee_id,departament_id) VALUES (1,4);
 INSERT INTO Works_at(employee_id,departament_id) VALUES (2,4);

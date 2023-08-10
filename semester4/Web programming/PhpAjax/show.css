@@ -1,0 +1,87 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+   
+}
+
+.container {
+    height: 90%;
+    width: 90%;
+    border-radius: 10px;
+    color: rgb(0, 0, 0);
+    display: flex;
+    font-size: 15px;
+    flex-direction: column;
+}
+
+.details {
+    margin-top: 20px;
+    width: 80%;
+    align-self: center;
+    display: grid;
+    grid-template-columns: auto 23% 23% auto;
+    padding: 15px;
+}
+
+.details h1 {
+    text-align: center;
+}
+
+.details input {
+    height: 50%;
+    margin: auto 30px;
+    background-color: #b79abe;
+    color: black;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.details .add {
+    grid-column-start: 4;
+    width: 135px;
+    padding: 8px;
+    justify-self: center;
+    margin-right: 50px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#info {
+    margin-top: 5px;
+    grid-column-start: 1;
+    grid-column-end: 5;
+    font-size: 20px;
+    font-style: bold;
+    margin-left:170px;
+    margin-bottom: -20px;
+    
+
+}
+
+button {
+    border: 2px solid rgb(152, 109, 159);
+    border-radius: 7px;
+    background: #b79abe;
+}
+
+table {
+    margin-top: 30px;
+    align-self: center;
+    width: 80%;
+}
+
+th {
+    background:  #b79abe;
+    color: rgb(20, 19, 30);
+}
+
+table, th, td {
+    border-bottom: 1px solid rgb(92, 64, 86);
+    border-collapse: collapse;
+    text-align: center;
+    padding: 15px;
+}

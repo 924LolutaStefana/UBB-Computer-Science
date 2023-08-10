@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Multimedia files</title>
+    
+    <script src="utils/jquery-3.6.0.js"></script>
+    <link rel="stylesheet" href="show.css">
+    <script src="show.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <div class="details">
+        <h1>Multimedia Files</h1>
+
+        <input type="text" placeholder="Genre:" id="genre"/>
+
+        <input type="text" placeholder="Title:" id="title"/>
+
+        <button class="add" onclick="window.location.href='addMultimediaFile.html'">
+            Add new file
+        </button>
+        <p id="info">See the filtered files</p>
+    </div>
+    <table>
+        <tr>
+            <th> Title </th>
+            <th> Format type </th>
+            <th> Genre </th>
+            <th> Path </th>
+           
+            <th> Action </th>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
