@@ -1,0 +1,47 @@
+Alphabet:
+
+	a. Upper (A-Z) and lower case letters (a-z) of the English alphabet
+
+	b. Decimal digits (0-9)
+
+Lexic:
+
+      a.Special symbols, representing:
+
+- operators +, -, * ,///,  <,  > ,isequal, isequalorgreater, isequalorless, isequalto, ^, modulo
+
+- separators [ ], { },  space
+
+- reserved words:
+ isequal ,isequalorgreater, isequalorless, isequalto, for ,step ,output, if, cond, then, otherwise, read , getout 
+
+      b.identifiers
+
+  -a sequence of letters and  digits, such that the first character is a letter; the rule is:
+
+    identifier ::= letter | letter{letter}{digit}
+
+    letter ::= "A" | "B" | . ..| "Z" |"a" | "b"| ...|"z"
+
+    digit ::= "0" | "1" |...| "9"
+
+
+      c.constants
+
+1.integer - rule:
+
+      noconst:="-"no|no
+
+      no:=digit{no}| digit
+
+2.character
+
+    character:='letter'|'digit'
+
+3.string
+
+      constchar:="string"
+
+      string:=char{string}
+
+      char:=letter|digit
