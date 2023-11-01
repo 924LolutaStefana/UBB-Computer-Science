@@ -1,47 +1,30 @@
 Alphabet:
-
 	a. Upper (A-Z) and lower case letters (a-z) of the English alphabet
-
 	b. Decimal digits (0-9)
 
 Lexic:
 
       a.Special symbols, representing:
-
 - operators +, -, * ,///,  <,  > ,isequal, isequalorgreater, isequalorless, isequalto, ^, modulo
-
-- separators [ ], { },  space
-
+- separators [ ], { },  space // should include the separators: ()
 - reserved words:
  isequal ,isequalorgreater, isequalorless, isequalto, for ,step ,output, if, cond, then, otherwise, read , getout 
-
       b.identifiers
-
   -a sequence of letters and  digits, such that the first character is a letter; the rule is:
-
-    identifier ::= letter | letter{letter}{digit}
-
+    identifier ::= letter | letter{letter}{digit} // first rule is a bit redundant, it is included in the second rule; the second rule can be seen as restrictive, obeying that you can not have identifiers like: a1a, because after the digit you should not have another letters. If this is the rule that you want, you might put this as a constraint: that you want your identifiers to end with digits (if you have more than 1 digit). If you wanted to have identifiers as all sorts of combination, you can have “identifier ::= letter ({letter} | {digit})
     letter ::= "A" | "B" | . ..| "Z" |"a" | "b"| ...|"z"
-
     digit ::= "0" | "1" |...| "9"
-
-
       c.constants
-
 1.integer - rule:
-
-      noconst:="-"no|no
-
-      no:=digit{no}| digit
+      noconst:="-"no|no //consider better practice in structure, if you used “::=”, you might want to use it like that in all places to avoid ambiguity.
+      no:=digit{no}| digit	 // numbers like: 019, 01 follow this rule. Better approach might be to separate the non zero digits: 
+-integerConstant= ["+"|"-"]nonZeroD{digit}|"0"
+-nonZeroD= "1"|...|"9"
+-digit= "0"|"1"|...|"9"
 
 2.character
-
-    character:='letter'|'digit'
-
+    character:='letter'|'digit' //the ‘ and ‘ should have been between “ ”, because they are terminals, so: “ ‘ ”letter” ‘ ”| “ ‘ ”digit” ‘ ” would be a better approach.
 3.string
-
-      constchar:="string"
-
-      string:=char{string}
-
-      char:=letter|digit
+      constchar:="string" //this means that you have as constchar just the word string, because putting it between “ ” makes it a terminal. If you meant that the constchar should appear in code between “ “ , you might want to use the structure “ “ “  string  “ “ “, to show that “ have to be terminal.
+      string:=char{string} 
+      char:=letter|digit //you can use the character you defined above.

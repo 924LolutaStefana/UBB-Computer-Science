@@ -1,19 +1,11 @@
- Program ::= Statementlist | Statement
-Statementlist::= Statement + Statement
-
+Program ::= Statementlist | Statement
+Statementlist::= Statement + Statement //it would be better to write: Statement{Statement} to show that the Statementlist can have one or more Statements.
 Statement ::= Assignment | InputOutput | Conditional | Loop| Comparison
-
 Assignment ::= Identifier "isequal" Expression
-
 InputOutput ::= "read" "(" "{" String  "}"")" | "output" "(" "{" String "}" ")"
-
 Conditional ::= "if" "cond" "[" Expression "]" "then" Block "otherwise" Block
-
 Loop ::= "for" Identifier "from" Expression "to" Expression "step" identifier Block
-
- Block ::=  Statement 
-
- Expression ::= Identifier |  Expression operator Expression |  Expression 
- Comparison ::= Identifier operator Expression| Identifier operator Identifier
+Block ::=  Statement //no need to define something with different name.
+Expression ::= Identifier |  Expression operator Expression |  Expression 
+Comparison ::= Identifier operator Expression| Identifier operator Identifier
 operator::= "isequalto","isequalorgreater", "isequalorsmaller", ">","<"
-

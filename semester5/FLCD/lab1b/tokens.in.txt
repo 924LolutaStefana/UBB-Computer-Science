@@ -29,3 +29,5 @@ if
 otherwise
  read 
 getout 
+
+//you can erase the alphabet and put the separators instead.
