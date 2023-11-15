@@ -1,0 +1,11 @@
+n = read({Enter a number})
+if  cond[n > 01] then
+	for i from 2 to n, step 1
+		if cond[n /% i] isequalto 0
+			output({^n is not a prime number})
+			getout
+		otherwise
+			print({^n is a prime number})
+
+otherwise
+	output({^n is not a prime number})

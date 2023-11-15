@@ -1,0 +1,5 @@
+n isequal read({Enter a number})
+sum isequal 0
+for number from 1 to n+1, step 1
+    sum isequal sum+number
+output({Sum of first ^n numbers is : ^sum})
