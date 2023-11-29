@@ -1,0 +1,19 @@
+functie sum(INT n)
+{
+LOCAL INT s=0.
+LOCAL INT i=0.
+LOCAL ARRAY v.
+catTimp ( n > 0 )
+	{
+	  LOCAL INT x = citeste().
+	  v.adauga(x).
+	  n--.
+	}
+catTimp (i < n)
+	{
+	  s = s+v[i].
+	  i++.
+	}
+}
+INT n  =  citeste('Enter how many numbers you want to read').
+apel sum(n).
