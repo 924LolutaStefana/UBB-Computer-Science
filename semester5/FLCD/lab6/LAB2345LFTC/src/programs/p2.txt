@@ -1,0 +1,10 @@
+functie gdc(INT a, INT b)
+{
+catTimp (a != b)
+	{
+	  decideDaca [a>b] -> a = a - b dacaNU -> b = b - a.
+	}
+}
+INT a=citeste('Enter first number').
+INT b=citeste('Enter second number').
+apel gdc(a, b).

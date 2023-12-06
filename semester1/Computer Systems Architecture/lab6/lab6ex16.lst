@@ -1,0 +1,89 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  
+    11                                  ; our data is declared here (the variables needed by our program)
+    12                                  segment data use32 class=data
+    13 00000000 61636769                    s1  db  'a','c','g','i'
+    14                                      len_s1 equ ($-s1);the length of the string 
+    15 00000004 6264656668                  s2 db 'b','d','e','f','h'
+    16                                      len_s2 equ ($-s2);the length of the string 
+    17 00000009 0000                        refjhb dw 0
+    18 0000000B <res 00000009>              aux resb len_s1 + len_s2
+    19 00000014 <res 00000009>              result resb len_s1 +len_s2
+    20                                      
+    21                                  
+    22                                  ; our code starts here
+    23                                  segment code use32 class=code
+    24                                      start:
+    25                                          ; Being given two alphabetical ordered strings of characters, s1 and s2, build using merge sort the ordered string of bytes that contain all characters from s1 and s2.
+    26 00000000 BE[00000000]                    mov esi, s1;in eds:esi we will store the FAR address of the string "sir"
+    27 00000005 BF[0B000000]                    mov edi, aux
+    28 0000000A FC                              cld;parse the string from left to right(DF=0).    
+    29 0000000B B904000000                      mov ecx, len_s1;we will parse the elements of the string in a loop with len iterations.
+    30                                          repeta:
+    31 00000010 AC                      		lodsb; al:'a'
+    32 00000011 AA                              stosb
+    33                                             
+    34 00000012 E2FC                    	loop repeta;if there are more elements (ecx>0) resume the loop.
+    35                                      
+    36 00000014 BE[04000000]                 mov esi, s2;in eds:esi we will store the FAR address of the string "sir"
+    37 00000019 FC                              cld;parse the string from left to right(DF=0).    
+    38 0000001A B905000000                      mov ecx, len_s2;we will parse the elements of the string in a loop with len iterations.
+    39                                          repeta2:
+    40 0000001F AC                      		lodsb; 
+    41 00000020 AA                              stosb
+    42                                             
+    43 00000021 E2FC                    	loop repeta2
+    44                                      
+    45 00000023 BE[0B000000]                mov esi, aux
+    46 00000028 BF[14000000]                mov edi,result
+    47                                     
+    48 0000002D FC                          cld
+    49 0000002E B905000000                  mov ecx,len_s2
+    50 00000033 83C104                      add ecx,len_s1
+    51 00000036 89CA                        mov edx,ecx
+    52                                        repeta3:
+    53 00000038 AC                      		lodsb;
+    54 00000039 88C3                            mov bl,al
+    55                                          
+    56                                          al_doilea_for:
+    57 0000003B AC                              lodsb
+    58 0000003C 38C3                            cmp bl,al
+    59 0000003E 7F02                            jg swap
+    60                                          
+    61 00000040 EB0C                            jmp end_cond
+    62                                          
+    63                                          swap:
+    64 00000042 88C4                            mov ah,al
+    65 00000044 88D8                            mov al,bl
+    66 00000046 88E3                            mov bl,ah
+    67                                          
+    68 00000048 AA                              stosb 
+    69                                          
+    70 00000049 83FA00                          cmp edx,0
+    71 0000004C 7FED                            jG al_doilea_for
+    72                                        
+    73                                          
+    74                                         
+    75                                             end_cond:
+    76 0000004E E2E8                    	loop repeta3
+    77                                      
+    78                                  
+    79                                  
+    80                                  
+    81                                  		
+    82                                  sfarsit:;end the program
+    83                                             
+    84                                       
+    85                                          
+    86                                      
+    87                                          ; exit(0)
+    88 00000050 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    89 00000052 FF15[00000000]                  call    [exit]       ; call exit to terminate the program

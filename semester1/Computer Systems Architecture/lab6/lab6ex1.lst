@@ -1,0 +1,83 @@
+     1                                  bits 32 
+     2                                  global start
+     3                                  extern exit; tell nasm that exit exists even if we won't be defining it
+     4                                  import exit msvcrt.dll; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     5                                  ; our data is declared here (the variables needed by our program)
+     6                                  segment data use32 class=data
+     7 00000000 78567F12CDABCDAB        	sir  dd  127F5678h,0ABCDABCDh
+     8                                  	len equ ($-sir)/4;the length of the string (in dd)
+     9 00000008 0000                        suma_impar dw  0;variabile used for holding the sum of the digits 
+    10 0000000A <res 00000008>              result resd len
+    11                                  ; our code starts here
+    12                                  segment code use32 class=code
+    13                                      start:
+    14                                      ; An array with doublewords containing packed data (4 bytes written as a single doubleword) is given. Write an asm program in order to obtain a new array of doublewords, where each doubleword will be composed by
+    15                                  ;Example:
+    16                                  ;for the initial array:
+    17                                  ;127F5678h, 0ABCDABCDh, ...
+    18                                  ;The following should be obtained:
+    19                                  ;006800F7h, 0FF56FF9Ah, ... 
+    20 00000000 B800000000              mov eax,0
+    21 00000005 BB00000000              mov ebx,0
+    22 0000000A B900000000              mov ecx,0
+    23 0000000F BA00000000              mov edx,0
+    24 00000014 BE[00000000]            	mov esi, sir;in eds:esi we will store the FAR address of the string "sir"
+    25 00000019 BF[0A000000]                mov edi,result
+    26 0000001E FC                      	cld;parse the string from left to right(DF=0).    
+    27 0000001F B902000000              	mov ecx, len;we will parse the elements of the string in a loop with len iterations.
+    28                                  	repeta:
+    29 00000024 AC                      		lodsb;
+    30 00000025 88C3                    		mov bl,al ; bl : 78
+    31 00000027 AC                              lodsb
+    32 00000028 88C2                            mov dl,al ; dl :56
+    33 0000002A AC                              lodsb; al: 7F
+    34 0000002B 88C6                            mov dh,al  ; dh : 7F
+    35 0000002D AC                              lodsb ; al:12
+    36 0000002E 88C4                            mov ah,al
+    37 00000030 88F0                            mov al,dh  ; al:7F
+    38 00000032 88E6                            mov dh,ah ; dh:12
+    39                                          
+    40 00000034 00D8                            add al,bl ; al: F7
+    41 00000036 7218                            jnae carry
+    42 00000038 00F2                            add dl,dh   ; dl:68
+    43 0000003A A2[08000000]                    mov [suma_impar],al
+    44 0000003F B000                            mov al,0
+    45 00000041 AA                              STOSB;  result : 00
+    46 00000042 88D0                            mov al,dl
+    47 00000044 AA                              STOSB ; result: 0068
+    48 00000045 B000                            mov al,0
+    49 00000047 AA                              STOSB ; result:006800
+    50 00000048 A0[08000000]                    mov al,[suma_impar]
+    51 0000004D AA                              STOSB; result 006800F7
+    52 0000004E EB16                            jmp end_cond
+    53                                          
+    54                                        
+    55                                  		
+    56                                  		carry:
+    57                                           
+    58                                          
+    59 00000050 00F2                             add dl,dh   ; dl:68
+    60 00000052 A2[08000000]                     mov [suma_impar],al
+    61 00000057 B0FF                             mov al,0FFh
+    62 00000059 AA                              STOSB;  result : FF
+    63 0000005A 88D0                            mov al,dl
+    64 0000005C AA                              STOSB ; result: FF56
+    65 0000005D B0FF                             mov al,0FFh
+    66 0000005F AA                              STOSB ; result:FF56FF
+    67 00000060 A0[08000000]                    mov al,[suma_impar]
+    68 00000065 AA                              STOSB; result FF56FF9A
+    69                                           
+    70                                           
+    71                                       
+    72                                          end_cond:
+    73                                          
+    74 00000066 E2BC                    	loop repeta;if there are more elements (ecx>0) resume the loop.
+    75                                  
+    76                                  
+    77                                  
+    78                                  	
+    79                                  sfarsit:;end the program
+    80                                             
+    81 00000068 6A00                            push dword 0; push the parameter for exit onto the stack
+    82 0000006A FF15[00000000]                  call [exit]; call exit to terminate the program
+    83                                          

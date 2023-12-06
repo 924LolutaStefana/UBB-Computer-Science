@@ -1,0 +1,51 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  
+    11                                  ; our data is declared here (the variables needed by our program)
+    12                                  segment data use32 class=data
+    13 00000000 5777                         a dw 0111_0111_0101_0111b
+    14 00000002 BE9B                         b dw 1001_1011_1011_1110b
+    15 00000004 00000000                     c dd 0
+    16                                  
+    17                                  ; our code starts here
+    18                                  segment code use32 class=code
+    19                                      start:
+    20                                          ; 1.Given the words A and B, compute the doubleword C as follows:
+    21                                      ;the bits 0-4 of C are the same as the bits 11-15 of A
+    22                                      ;the bits 5-11 of C have the value 1
+    23                                      ;the bits 12-15 of C are the same as the bits 8-11 of B
+    24                                      ;the bits 16-31 of C are the same as the bits of A
+    25                                      
+    26                                      
+    27 00000000 66BB0000                        mov  bx, 0 ; we compute the result in bx
+    28 00000004 66A1[00000000]                  mov  ax, [a] ; we isolate bits 11-15 of A
+    29 0000000A 662500F8                        and  ax, 1111100000000000b
+    30 0000000E B10B                            mov  cl, 11
+    31 00000010 66D3C8                          ror  ax, cl ; we rotate 11 positions to the right
+    32 00000013 6609C3                          or   bx, ax ; the bits 0-4 of C are the same as the bits 11-15 of A
+    33                                  
+    34 00000016 6681CBE00F                      or   bx, 0000111111100000b   ; the bits 5-11 of C have the value 1
+    35                                          
+    36 0000001B 66A1[02000000]                  mov  ax, [b] ; we isolate bits 8-11 of B
+    37 00000021 6625000F                        and  ax, 0000111100000000b
+    38 00000025 B104                            mov  cl, 4
+    39 00000027 66D3C0                          rol  ax, cl ; we rotate 4 positions to the left
+    40 0000002A 6609C3                          or   bx, ax ; the bits 12-15 of C are the same as the bits 8-11 of B
+    41                                          
+    42 0000002D 6689D8                          mov ax,bx
+    43 00000030 668B15[00000000]                mov dx,[a] ;the bits 16-31 of C are the same as the bits of A
+    44 00000037 6652                            push dx
+    45 00000039 6650                            push ax
+    46 0000003B 58                              pop eax; in eax we have c 
+    47 0000003C A3[04000000]                    mov  [c], eax
+    48                                          
+    49                                          
+    50 00000041 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    51 00000043 FF15[00000000]                  call    [exit]       ; call exit to terminate the program

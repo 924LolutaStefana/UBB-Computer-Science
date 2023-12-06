@@ -1,0 +1,10 @@
+functie max(INT a, INT b, INT c)
+{
+decideDaca [a>b si a>c] -> scrie('Max number is'; a).
+decideDaca [b>a si b>c] -> scrie('Max number is'; b).
+decideDaca [c>a si c>b] -> scrie('Max number is'; c).
+}
+INT a=citeste('Enter first number').
+INT b=citeste('Enter second number').
+INT c=citeste('Enter third number').
+apel max(a, b, c).

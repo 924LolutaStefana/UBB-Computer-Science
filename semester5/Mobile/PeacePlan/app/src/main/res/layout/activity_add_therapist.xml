@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddTherapistActivity"
+    android:background="@color/light_blue">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/sky"
+        android:scaleType="centerCrop"/>
+
+
+    <TextView
+        android:id="@+id/addTherapistHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="41dp"
+
+        android:fontFamily="sans-serif-condensed"
+        android:text="@string/add_therapist"
+        android:textColor="#0C3243"
+        android:textSize="24sp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="16dp"
+
+        android:layout_marginBottom="21dp"
+        android:backgroundTint="@color/purple"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/baseline_done_24"
+        app:tint="@color/white"
+        tools:ignore="ContentDescription" />
+
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:padding="12dp"
+        android:textSize="20sp"
+        android:layout_below="@id/addTherapistHeading"
+        android:background="@drawable/purple_border"
+        android:inputType="text"
+        android:hint="@string/name"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:backgroundTint="@color/white"
+        android:maxLines="1"
+        />
+
+    <EditText
+        android:id="@+id/editTextAge"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/addTherapistHeading"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/purple_border"
+        android:ems="10"
+        android:hint="@string/age"
+        android:inputType="number"
+        android:maxLines="1"
+        android:padding="12dp"
+        android:backgroundTint="@color/white"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/editTextSpecialization"
+        android:ems="10"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/addTherapistHeading"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="190dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/purple_border"
+        android:maxLines="1"
+        android:padding="12dp"
+        android:textSize="20sp"
+        android:backgroundTint="@color/white"
+        android:hint="@string/specialization" />
+
+    <EditText
+        android:id="@+id/editTextExperience"
+        android:ems="10"
+        android:inputType="number"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/addTherapistHeading"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="260dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/purple_border"
+        android:maxLines="1"
+        android:padding="12dp"
+        android:textSize="20sp"
+        android:backgroundTint="@color/white"
+        android:hint="@string/years_of_experience" />
+    <EditText
+        android:id="@+id/editTextDescription"
+        android:ems="10"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@id/addTherapistHeading"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="330dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/purple_border"
+        android:maxLines="1"
+        android:padding="12dp"
+        android:textSize="20sp"
+        android:backgroundTint="@color/white"
+        android:hint="@string/description" />
+
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/addTherapistHeading"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="-6dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="3dp"
+        android:background="#000C3243"
+        android:contentDescription="TODO"
+        android:src="@drawable/ic_baseline_arrow_back_24" />
+
+
+</RelativeLayout>

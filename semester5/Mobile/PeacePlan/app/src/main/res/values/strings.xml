@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">PeacePlan</string>
+    <string name="add_therapist">Add therapist</string>
+    <string name="age">Age:</string>
+    <string name="specialization">Specialization:</string>
+    <string name="name">Name:</string>
+    <string name="years_of_experience">Years of experience:</string>
+    <string name="description">Description:</string>
+    <string name="therapists">Therapists</string>
+    <string name="edit_therapist">Edit Therapist</string>
+</resources>

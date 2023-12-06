@@ -1,0 +1,4 @@
+nonterminals={S,A}
+terminals={a,b,c,d,e}
+startingSymbol=S
+productions={S->a A|b A|c$A->d|e}
