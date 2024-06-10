@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddTherapistActivity">
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/sky"
+            android:scaleType="centerCrop"/>
+        <TextView
+            android:id="@+id/addTherapistTitle"
+            android:layout_width="401dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@color/light_blue"
+            android:layout_marginBottom="10dp"
+            android:text="Add a new therapist"
+            android:textSize="28sp"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/nameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/addTherapistTitle"
+            android:layout_alignStart="@+id/therapistNameText"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="5dp"
+            android:text="Name" />
+
+        <EditText
+            android:id="@+id/therapistNameText"
+            android:layout_width="337dp"
+            android:layout_height="55dp"
+            android:layout_below="@id/nameLabel"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="35dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="e.g. John Doe"
+            android:inputType="text"
+            android:maxLines="1" />
+
+        <TextView
+            android:id="@+id/ageLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/therapistNameText"
+            android:layout_alignStart="@+id/ageTextNumber"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="5dp"
+            android:text="Age" />
+
+        <EditText
+            android:id="@+id/ageTextNumber"
+            android:layout_width="337dp"
+            android:layout_height="55dp"
+            android:layout_below="@id/therapistNameText"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="35dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="e.g. 30"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/specializationLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ageTextNumber"
+            android:layout_alignStart="@+id/therapistSpecializationText"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="5dp"
+            android:text="Specialization" />
+
+        <EditText
+            android:id="@+id/therapistSpecializationText"
+            android:layout_width="337dp"
+            android:layout_height="55dp"
+            android:layout_below="@id/ageTextNumber"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="35dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="e.g. Psychology"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/experienceLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/therapistSpecializationText"
+            android:layout_alignStart="@+id/therapistExperienceText"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="5dp"
+            android:text="Experience" />
+
+        <EditText
+            android:id="@+id/therapistExperienceText"
+            android:layout_width="337dp"
+            android:layout_height="55dp"
+            android:layout_below="@id/therapistSpecializationText"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="35dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="e.g. 5 years"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/descriptionLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/therapistExperienceText"
+            android:layout_alignStart="@+id/therapistDescriptionText"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="5dp"
+            android:text="Description" />
+
+        <EditText
+            android:id="@+id/therapistDescriptionText"
+            android:layout_width="337dp"
+            android:layout_height="100dp"
+            android:layout_below="@id/therapistExperienceText"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="35dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="e.g. Brief description about the therapist..."
+            android:inputType="textMultiLine" />
+
+        <Button
+            android:id="@+id/saveAddButton"
+            android:layout_width="337dp"
+            android:layout_height="55dp"
+            android:layout_below="@id/therapistDescriptionText"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="35dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/light_blue"
+
+
+            android:text="Save" />
+
+        <Button
+            android:id="@+id/cancelAddButton"
+            android:layout_width="337dp"
+            android:layout_height="55dp"
+            android:layout_below="@id/saveAddButton"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="35dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/light_blue"
+
+
+            android:text="Cancel" />
+
+</RelativeLayout>
